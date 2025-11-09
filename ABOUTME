@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Sobre Mí | FisMatRepo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="assets/Icon.png">
+
+    <meta name="description" content="Recursos de los grados en Física y Matemáticas, de la UGR. Encontrarás exámenes resueltos, relaciones resueltas, apuntes, y todo lo que necesites.">
+    <meta name="keywords" content="DGIIM, exámenes, ejercicios, Física, Matemáticas, UGR"/>
+    <meta name="author" content="m99roldan" />
+    <meta name="copyright" content="m99roldan" />
+    <meta name="robots" content= "index, follow">
+
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <!-- Estilos -->
+    <style>
+        body {
+            background-color: #0a0a0a; /* fondo oscuro */
+            color: #00ffff; /* azul eléctrico */
+            font-family: 'Press Start 2P', sans-serif; /* tipografía estilo videojuego */
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #0d0d0d;
+            border-bottom: 2px solid #00ffff;
+        }
+
+        header ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        header ul li a {
+            color: #00ffff;
+            text-decoration: none;
+        }
+
+        header ul li a.current {
+            text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+        }
+
+        header ul li a:hover {
+            color: #00bfff;
+        }
+
+        header a.bi {
+            font-size: 1.5rem;
+            color: #00ffff;
+            margin-left: 1rem;
+            transition: color 0.2s;
+        }
+
+        header a.bi:hover {
+            color: #00bfff;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        h1 {
+            text-align: center;
+            text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff;
+        }
+
+        p.intro {
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 2px #00ffff, 0 0 5px #00ffff;
+        }
+
+        a {
+            color: #00ffff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #00bfff;
+        }
+    </style>
+
+    <!-- Script para tema oscuro -->
+    <script>
+        (function () {
+            const theme = localStorage.getItem("theme");
+            const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            if (theme === "dark" || (!theme && prefersDark)) {
+                document.documentElement.classList.add("dark");
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <header>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="aboutME.html" class="current">Sobre Nosotros</a></li>
+            <li><a href="colaboracion.html">Colaboración</a></li>
+        </ul>
+
+        <div>
+            <a target="_blank" href="https://github.com/m99roldan"><i class="bi bi-github"></i></a>
+            <a id="toggle-theme" style="cursor: pointer;"><i class="bi bi-moon"></i></a>
+        </div>
+    </header>
+
+    <main>
+        <h1>Sobre mí</h1>
+        <p class="intro">
+            La persona que ideó este repositorio, <a href="https://github.com/m99roldan" target="_blank">m99roldan</a>, comenzó su andadura universitaria en el curso 2022/2023.
+        <p class="intro">
+            El objetivo es compartir los recursos que nosotros hemos hecho, por lo que por norma general no están revisados por profesores. Por ello, agradecemos enormemente que, en caso de detectar cualquier error en cualquier recurso, se nos notifique conforme se describe en la sección <a href="colaboracion.html">Colaboración</a>.
+        </p>
+        <p class="intro">
+            Por último, todos los recursos han sido creados desde cero por nosotros usando \(\LaTeX\) y otras plataformas.
+            Los exámenes subidos son los que los profesores nos han permitido llevarnos y no han recogido al finalizar el examen.
+            No obstante, en el caso de que cualquier profesor o usuario desee que eliminemos cualquier recurso, rogamos se pongan en contacto con nosotros y se quitará sin problema.
+            Nuestro contacto se podrá encontrar en los <a href="aboutUs.html">perfiles de GitHub</a> o en la sección <a href="colaboracion.html">Colaboración</a>.
+        </p>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const btn = document.getElementById("toggle-theme");
+            const icon = btn?.querySelector("i");
+
+            const updateIcon = (dark) => {
+                if (!icon) return;
+                icon.classList.toggle("bi-moon", !dark);
+                icon.classList.toggle("bi-sun", dark);
+            };
+
+            const isDark = () => document.documentElement.classList.contains("dark");
+
+            if (btn) {
+                btn.onclick = () => {
+                    const dark = !isDark();
+                    document.documentElement.classList.toggle("dark", dark);
+                    localStorage.setItem("theme", dark ? "dark" : "light");
+                    updateIcon(dark);
+                };
+            }
+
+            updateIcon(isDark());
+        });
+    </script>
+</body>
+
+</html>
